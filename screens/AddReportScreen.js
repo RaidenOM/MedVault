@@ -20,7 +20,6 @@ export default function AddReportScreen() {
   const navigation = useNavigation();
   const { token } = useContext(AppContext);
 
-  // Function to pick PDF file
   const pickDocument = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
@@ -29,14 +28,45 @@ export default function AddReportScreen() {
 
       if (result.canceled) return;
 
-      setPdf(result.assets[0]); // Store the selected PDF
+      setPdf(result.assets[0]);
       Alert.alert("Success", "PDF selected successfully");
     } catch (error) {
       Alert.alert("Error", "Failed to pick document");
     }
   };
 
+  const validateInputs = () => {
+    if (!diseaseName.trim()) {
+      Alert.alert("Validation Error", "Please enter disease name");
+      return false;
+    }
+    if (!description.trim()) {
+      Alert.alert("Validation Error", "Please enter description");
+      return false;
+    }
+    if (!clinicalHistory.trim()) {
+      Alert.alert("Validation Error", "Please enter clinical history");
+      return false;
+    }
+    if (!findings.trim()) {
+      Alert.alert("Validation Error", "Please enter findings");
+      return false;
+    }
+    if (!doctorName.trim()) {
+      Alert.alert("Validation Error", "Please enter doctor name");
+      return false;
+    }
+    if (!recordType.trim()) {
+      Alert.alert("Validation Error", "Please enter record type");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleConfirm = async () => {
+    const validationResult = validateInputs();
+    if (!validationResult) return;
     const formData = new FormData();
     formData.append("disease", diseaseName);
     formData.append("description", description);
@@ -123,7 +153,6 @@ export default function AddReportScreen() {
           />
         </View>
 
-        {/* PDF Upload Button */}
         <TouchableOpacity style={styles.uploadButton} onPress={pickDocument}>
           <Ionicons name="document" size={20} color="white" />
           <Text style={styles.uploadText}>{pdf ? pdf.name : "Select PDF"}</Text>

@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
 import AppProvider, { AppContext } from "./store/app-context";
 import { useContext } from "react";
 import LoginScreen from "./screens/LoginScreen";
@@ -71,8 +71,25 @@ function MainAppStack() {
 }
 
 function Navigation() {
-  const { user } = useContext(AppContext);
+  const { user, loading } = useContext(AppContext);
 
+  if (loading) {
+    return (
+      <>
+        <View style={[styles.loadingContainer, { backgroundColor: "white" }]}>
+          <Image
+            source={require("./assets/MediVaultLoading.png")}
+            resizeMode="center"
+            style={{ height: 400 }}
+          />
+          <ActivityIndicator size="large" color="#4CAF50" />
+          <Text style={{ marginTop: 20, color: "#7f8c8d" }}>
+            Designed by Om Kumar
+          </Text>
+        </View>
+      </>
+    );
+  }
   if (!user) return <AuthStack />;
   return <MainAppStack />;
 }
@@ -94,5 +111,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
 });

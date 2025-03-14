@@ -13,7 +13,7 @@ import axios from "axios";
 import { BASE_API_URL } from "../utils";
 import { useIsFocused } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import ReportCard from "../components/ReportCard"; // Reuse the ReportCard component
+import ReportCard from "../components/ReportCard";
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -35,7 +35,7 @@ export default function HomeScreen() {
         setRecentReports(
           response.data.reports
             .sort((a, b) => new Date(b.time) - new Date(a.time))
-            .slice(0, 3) // Show only the 3 most recent reports
+            .slice(0, 3)
         );
       } catch (error) {
         console.log(error);
@@ -50,7 +50,6 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <LinearGradient
         style={styles.header}
         colors={["#2F7FF2", "#2f7ff2", "#702ff2"]}
@@ -66,7 +65,6 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </LinearGradient>
 
-      {/* Recent Reports Section */}
       <Text style={styles.sectionTitle}>Recent Reports</Text>
       {loading ? (
         <ActivityIndicator size="large" color="#2F7FF2" style={styles.loader} />
@@ -94,7 +92,6 @@ export default function HomeScreen() {
   );
 }
 
-// Styles
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F8F9FA" },
   header: {

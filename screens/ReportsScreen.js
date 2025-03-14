@@ -13,9 +13,9 @@ import {
 } from "react-native";
 import { AppContext } from "../store/app-context";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { format } from "date-fns"; // Format dates
+import { format } from "date-fns";
 import { Ionicons } from "@expo/vector-icons";
-import ReportCard from "../components/ReportCard"; // Import the ReportCard component
+import ReportCard from "../components/ReportCard";
 
 export default function ReportsScreen() {
   const [reports, setReports] = useState([]);
@@ -34,7 +34,6 @@ export default function ReportsScreen() {
           },
         });
 
-        // Sort reports by date (descending order)
         const sortedReports = response.data.reports.sort(
           (a, b) => new Date(b.time) - new Date(a.time)
         );
@@ -53,10 +52,9 @@ export default function ReportsScreen() {
     report.disease.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Function to group reports by year and date
   const groupedReports = filteredReports.reduce((acc, report) => {
-    const year = format(new Date(report.time), "yyyy"); // Example: "2023"
-    const formattedDate = format(new Date(report.time), "MMM do"); // Example: "Dec 5th"
+    const year = format(new Date(report.time), "yyyy");
+    const formattedDate = format(new Date(report.time), "MMM do");
 
     if (!acc[year]) acc[year] = {};
     if (!acc[year][formattedDate]) acc[year][formattedDate] = [];
@@ -66,7 +64,6 @@ export default function ReportsScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Search Bar */}
       <View style={styles.topBar}>
         <TouchableOpacity>
           <Ionicons name="qr-code-outline" size={20} />
@@ -95,7 +92,6 @@ export default function ReportsScreen() {
         <Text style={styles.headerTitle}>Reports</Text>
       </View>
 
-      {/* Reports List */}
       <ScrollView style={styles.reportsList}>
         {loading ? (
           <ActivityIndicator
@@ -106,18 +102,14 @@ export default function ReportsScreen() {
         ) : (
           Object.keys(groupedReports).map((year) => (
             <View key={year} style={styles.yearGroup}>
-              {/* Year Circle */}
               <View style={styles.yearCircle}>
                 <Text style={styles.yearText}>{year}</Text>
               </View>
 
-              {/* Reports by Date */}
               {Object.keys(groupedReports[year]).map((date) => (
                 <View key={date} style={styles.reportSection}>
-                  {/* Vertical Timeline Line */}
                   <View style={styles.timeline} />
 
-                  {/* Reports Section */}
                   <View style={styles.reportContent}>
                     <Text style={styles.dateText}>{date}</Text>
                     {groupedReports[year][date].map((report) => (
@@ -131,7 +123,6 @@ export default function ReportsScreen() {
         )}
       </ScrollView>
 
-      {/* Add Button */}
       <TouchableOpacity
         onPress={() => navigation.navigate("AddReportScreen")}
         style={styles.addButton}
@@ -142,7 +133,6 @@ export default function ReportsScreen() {
   );
 }
 
-// Styles
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F8F9FA", paddingTop: 50 },
   header: {
