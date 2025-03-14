@@ -16,7 +16,7 @@ export default function AddReportScreen() {
   const [findings, setFindings] = useState("");
   const [doctorName, setDoctorName] = useState("");
   const [recordType, setRecordType] = useState("");
-  const [pdf, setPdf] = useState(null);
+  const [pdf, setPdf] = useState();
   const navigation = useNavigation();
   const { token } = useContext(AppContext);
 
