@@ -59,3 +59,8 @@ expo start
 | GET    | `/profile`  | Get logged-in user's details         | Yes           |
 | GET    | `/reports`  | Get all medical reports of user      | Yes           |
 | POST   | `/reports`  | Upload a new medical report (PDF)    | Yes           |
+
+## App ScreenShots
+
+![sc1](./assets/sc1.png)
+![sc2](./assets/sc2.png)

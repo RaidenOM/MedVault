@@ -40,22 +40,22 @@ function Tabs() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "#2F7FF2", // Active tab color
-        tabBarInactiveTintColor: "#999", // Inactive tab color
+        tabBarActiveTintColor: "#2F7FF2",
+        tabBarInactiveTintColor: "#999",
         tabBarStyle: {
-          paddingVertical: 8, // Add padding to the tab bar
+          paddingVertical: 8,
         },
       })}
     >
       <Tab.Screen
         component={HomeScreen}
         name="HomeScreen"
-        options={{ title: "Home" }} // Add a title for the tab
+        options={{ title: "Home" }}
       />
       <Tab.Screen
         component={ReportsScreen}
         name="ReportsScreen"
-        options={{ title: "Reports" }} // Add a title for the tab
+        options={{ title: "Reports" }}
       />
     </Tab.Navigator>
   );

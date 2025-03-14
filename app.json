@@ -19,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/MediVault.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.omkumar.MediVault"
     },
     "web": {
       "favicon": "./assets/MediVault.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e5e989cd-0b77-4a33-a431-60a094ee23f9"
+      }
     }
   }
 }
