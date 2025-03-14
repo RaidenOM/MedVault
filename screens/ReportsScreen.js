@@ -45,7 +45,7 @@ export default function ReportsScreen() {
       }
     };
 
-    if (isFocused) fetchReports(); //
+    if (isFocused) fetchReports();
   }, [isFocused]);
 
   const filteredReports = reports.filter((report) =>
